@@ -9,10 +9,9 @@
         <a href="#">
           <img class="avatar-large" :src="userById(post.userId).avatar" alt="">
         </a>
-        <a href="#" style="margin-left: auto;" class="link-unstyled" title="Make a change"><i class="fa fa-pencil"></i></a>
-        <p class="desktop-only text-small">107 posts</p>
+        <p class="desktop-only text-small">{{userById(post.userId).postsCount}} posts</p>
 
-        <p class="desktop-only text-small">23 threads</p>
+        <p class="desktop-only text-small">{{userById(post.userId).threadsCount}} threads</p>
 
         <span class="online desktop-only">online</span>
 
@@ -25,16 +24,15 @@
           </p>
         </div>
       </div>
-
       <div class="post-date text-faded">
-        {{post.publishedAt}}
+        <AppDate :timestamp="post.publishedAt" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import sourceData from '@/data.json'
+
 export default {
   name: 'PostList',
   props: {
@@ -43,9 +41,9 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      users: sourceData.users
+  computed: {
+    users () {
+      return this.$store.state.users
     }
   },
   methods: {

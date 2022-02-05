@@ -33,10 +33,7 @@ export default {
   methods: {
     save () {
       const post = {
-        id: 'sfda' + Math.random(),
-        userId: 'w9WeYrRVDaNNpxOkyVArjCKLSnD2',
-        text: this.text,
-        publishedAt: Math.floor(Date.now() / 1000)
+        text: this.text
       }
       this.$emit('save', { post })
       this.text = ''
